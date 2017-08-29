@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {BackendService} from "../backend.service";
 import {Response} from '@angular/http';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -8,27 +9,21 @@ import {Response} from '@angular/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  credentials ;
-  users = [
-    {
-      username: 'aaa',
-      password: 'abc123'
-    }
-  ];
+  @ViewChild('f') loginForm: NgForm;
   constructor(private backendService: BackendService) { }
 
   ngOnInit() {
   }
 
   register() {
-    this.backendService.storeUsers(this.users)
+    const val = this.loginForm.value;
+    const username = val.username;
+    const password = val.password;
+    const payload = { "userName" : username, "password": password};
+    this.backendService.storeUsers(username, payload)
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       )
   }
-  //
-  // get() {
-  //   this.backendService.getUsers();
-  // }
 }

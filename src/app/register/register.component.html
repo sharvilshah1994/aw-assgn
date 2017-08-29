@@ -6,12 +6,12 @@
       <div class="panel-body" style="margin: 40px 15px;">
         <h2 id="panel_heading"><strong>Register</strong></h2>
 
-        <form>
+        <form (ngSubmit)="register()" #f="ngForm">
           <label>Username</label>
-          <input type="text" class="form-control" name="username" id="username">
+          <input type="text" class="form-control" name="username" id="username" ngModel required>
           <br>
           <label>Password</label>
-          <input type="password" class="form-control" name="password" id="password">
+          <input type="password" class="form-control" name="password" id="password" ngModel required>
           <br>
           <br>
           <button (click)="register()" class="btn btn-primary">Register</button>

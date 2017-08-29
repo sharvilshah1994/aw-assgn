@@ -10,8 +10,8 @@ export class BackendService {
   constructor(private http: Http) {
   }
 
-  storeUsers(credentials: any[]) {
-    return this.http.put(this.URL, credentials);
+  storeUsers(username:String, credentials: any) {
+    return this.http.post(this.URL + 'add' + '/'+ username , JSON.stringify(credentials));
   }
 
   getUsers(username: String, password:String) {

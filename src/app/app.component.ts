@@ -10,10 +10,7 @@ import {Router, RouterModule} from "@angular/router";
 export class AppComponent {
   title = 'app';
 
-  constructor(private loginComp: LoginComponent, private router: Router){
-    if(loginComp.loginStatus === false){
-      router.navigate(['login']);
-    }
+  constructor(){
   }
 
 }

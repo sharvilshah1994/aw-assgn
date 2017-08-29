@@ -1,9 +1,8 @@
 import {Component, Injectable, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {BackendService} from "../backend.service";
-import {Response} from "@angular/http";
 import {Router} from "@angular/router";
-import {routing} from "../app.routing";
+import {Globals} from "../globals";
 
 @Component({
   selector: 'app-login',
@@ -17,10 +16,10 @@ export class LoginComponent implements OnInit {
   res: any;
   private username: String;
   private password: String;
-  loginStatus = false;
   ifLoginSuccess = true;
 
-  constructor(private backendService: BackendService, private route: Router) { }
+  constructor(private backendService: BackendService, private route: Router,
+  private globals: Globals) { }
 
   ngOnInit() {
   }
@@ -31,7 +30,10 @@ export class LoginComponent implements OnInit {
     this.password = val.password;
     this.backendService.getUsers(this.username, this.password).subscribe(
       (data: any) => {
-        if (data === "SUCCESS"){
+        console.log(data);
+        if (data === "Success"){
+          this.globals.username = this.username;
+          this.globals.loginStatus = true;
           this.route.navigate(['home']);
         }
         else {
