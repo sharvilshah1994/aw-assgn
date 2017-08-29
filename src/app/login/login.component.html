@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-8 col-md-offset-2">
+      <div class="login-box panel panel-default">
+        <div class="panel-body" style="margin: 40px 15px;">
+          <h2 id="panel_heading"><strong>Login to your account</strong></h2>
+
+          <form (ngSubmit)="login()" #f="ngForm">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" id="username" ngModel required>
+            <br>
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" id="password" ngModel required>
+            <br>
+            <br>
+            <button class="btn btn-primary" type="submit">Login</button>
+            <br>
+            <br>
+            <a [routerLink]="['/register']">Register</a>
+            <span *ngIf="!ifLoginSuccess" style="color:red">Login failed</span>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
