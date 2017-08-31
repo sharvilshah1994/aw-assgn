@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   private username: String;
   private password: String;
   ifLoginSuccess = true;
+  private chrome;
 
   constructor(private backendService: BackendService, private route: Router,
   private globals: Globals) { }
@@ -28,10 +29,21 @@ export class LoginComponent implements OnInit {
     const val = this.loginForm.value;
     this.username = val.username;
     this.password = val.password;
+    const milliseconds = (new Date).getTime();
+    const payload = { "username" : this.username, "timestamp": milliseconds};
+    const user = {"username": this.username};
     this.backendService.getUsers(this.username, this.password).subscribe(
       (data: any) => {
         console.log(data);
         if (data === "Success"){
+          this.backendService.storeTimeStamp(payload).subscribe(
+            (response) => console.log(response),
+            (error) => console.log(error)
+          );
+          this.backendService.putCurrentUser(user).subscribe(
+            (response) => console.log(response),
+            (error) => console.log(error)
+          );
           this.globals.username = this.username;
           this.globals.loginStatus = true;
           this.route.navigate(['home']);

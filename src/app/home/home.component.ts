@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {LoginComponent} from "../login/login.component";
 import {Router} from "@angular/router";
 import {Globals} from "../globals";
+import {BackendService} from "../backend.service";
+import {timestamp} from "rxjs/operator/timestamp";
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,9 @@ import {Globals} from "../globals";
 export class HomeComponent implements OnInit {
   username: String;
   isLoggedIn = false;
-
-  constructor(loginComp: LoginComponent, router: Router, global: Globals) {
+  timestamps = [];
+  flag = false;
+  constructor(private router: Router,  private global: Globals, private backend: BackendService) {
       console.log('Status:'+global.loginStatus);
       if(global.loginStatus) {
         this.username = global.username;
@@ -23,8 +26,27 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('On init');
+    this.backend.getTimeStamp()
+      .subscribe(
+        (data: any) => {
+          for (let i of data) {
+            let d = new Date(parseInt(i.timestamp));
+            this.timestamps.push(d);
+          }
+          this.flag = true;
+        }
+      )
   }
 
-
+  logout() {
+    const payload = {"username": "nothing"};
+    this.backend.putCurrentUser(payload).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+    this.global.loginStatus = false;
+    this.router.navigate(['login']);
+  }
 
 }

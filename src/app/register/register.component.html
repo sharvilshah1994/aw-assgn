@@ -14,7 +14,10 @@
           <input type="password" class="form-control" name="password" id="password" ngModel required>
           <br>
           <br>
-          <button (click)="register()" class="btn btn-primary">Register</button>
+          <button (click)="register()" class="btn btn-primary" [disabled]="!flag">Register</button>
+          <br>
+          <br>
+          <span *ngIf="!flag" style="color: blue">Registration successful!</span>
           <br>
           <br>
           <a routerLink="login">Back to Login</a>

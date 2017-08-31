@@ -11,11 +11,14 @@ import {NgForm} from "@angular/forms";
 export class RegisterComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
   constructor(private backendService: BackendService) { }
+  flag = true;
 
   ngOnInit() {
   }
 
+
   register() {
+    this.flag = false;
     const val = this.loginForm.value;
     const username = val.username;
     const password = val.password;

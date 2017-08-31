@@ -1,1 +1,19 @@
-<span *ngIf="isLoggedIn"><h1>Welcome {{username}}</h1></span>
+<div class="container">
+  <div class="row">
+    <br>
+    <div>
+      <span *ngIf="isLoggedIn" style="color:brown;"><h1>Welcome <span id="userid">{{username}}</span></h1></span>
+      <div class="pull-right">
+        <button class="btn btn-danger" (click)="logout()">Logout</button>
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <a href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15" target="_blank">Go to Stackoverflow</a>
+    <span><h4>Login Activity</h4></span>
+    <span *ngIf="flag">
+      <span *ngFor="let d of timestamps">Login made at: {{d}} <br></span>
+    </span>
+  </div>
+</div>
