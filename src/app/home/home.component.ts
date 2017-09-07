@@ -27,6 +27,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     let count = 0;
+    let time_scroll = 0;
+    let time_click = 0;
+    let time_keydown = 0;
+    let url_scroll = "";
+    let url_click = "";
+    let url_keydown = "";
     console.log('On init');
     this.backend.getTimeStamp()
       .subscribe(
@@ -48,6 +54,39 @@ export class HomeComponent implements OnInit {
           for (let i of data) {
             let d = new Date(parseInt(i.timestamp));
             i['timestamp'] = d;
+            if (i['event_type'] == "scroll") {
+              if (time_scroll == 0 && url_scroll == ""){
+                url_scroll = i['uri'];
+                time_scroll  = i['timestamp'];
+                i['time_taken'] = 0;
+              }
+              else if(i['uri'] == url_scroll){
+                i['time_taken'] = (i['timestamp'] - time_scroll) / 1000;
+              }
+            }
+            else if (i['event_type'] == "click") {
+              if (time_click == 0 && url_click == ""){
+                time_click  = i['timestamp'];
+                url_click = i['uri'];
+                i['time_taken'] = 0;
+              }
+              else if(i['uri'] == url_click ){
+                i['time_taken'] = (i['timestamp'] - time_click) / 1000;
+              }
+            }
+            else if (i['event_type'] == "keydown") {
+              if (time_keydown == 0 && url_keydown == ""){
+                time_keydown  = i['timestamp'];
+                url_keydown = i['uri'];
+                i['time_taken'] = 0;
+              }
+              else if(i['uri'] == url_keydown) {
+                i['time_taken'] = (i['timestamp'] - time_keydown) / 1000;
+              }
+            }
+            else {
+              i['time_taken'] = 0;
+            }
             this.logs.push(i);
           }
           this.logs.reverse();
@@ -67,6 +106,7 @@ export class HomeComponent implements OnInit {
             console.log(i);
             this.logs.push(i);
           }
+          this.logs.reverse();
         }
       );
   }

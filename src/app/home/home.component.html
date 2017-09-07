@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><span *ngIf="isLoggedIn" style="color:brown;">Welcome <span id="userid">{{username}}</span></span></a>
+          <a class="navbar-brand"><span *ngIf="isLoggedIn" style="color:brown;">Welcome <span id="userid">{{username}}</span></span></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,6 +60,9 @@
       <th>
         Timestamp
       </th>
+      <th>
+        Time between events (seconds)
+      </th>
       <tr *ngFor="let k of logs">
         <td>
           {{k.event_type}}
@@ -75,6 +78,9 @@
         </td>
         <td>
           {{k.timestamp}}
+        </td>
+        <td>
+          {{k.time_taken}}
         </td>
       </tr>
     </table>
