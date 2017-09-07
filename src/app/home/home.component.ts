@@ -97,6 +97,7 @@ export class HomeComponent implements OnInit {
   }
 
   refresh () {
+    this.logs = [];
     this.backend.getUserLogs()
       .subscribe(
         (data: any) => {
