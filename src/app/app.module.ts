@@ -10,6 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import {FormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
 import {Globals} from "./globals";
+import {Ng2SmartTableModule} from "ng2-smart-table";
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,14 @@ import {Globals} from "./globals";
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
     routing,
     HttpModule,
-    FormsModule
-
+    FormsModule,
+    Ng2SmartTableModule
   ],
   providers: [BackendService, LoginComponent, Globals],
   bootstrap: [AppComponent]

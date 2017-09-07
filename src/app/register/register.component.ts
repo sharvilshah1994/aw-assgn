@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BackendService} from "../backend.service";
-import {Response} from '@angular/http';
 import {NgForm} from "@angular/forms";
 
 @Component({

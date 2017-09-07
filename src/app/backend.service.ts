@@ -5,11 +5,14 @@ import {Globals} from "./globals";
 
 @Injectable()
 export class BackendService {
-  // URL = 'https://aw-assign1.firebaseio.com/data.json';
-  URL = 'http://localhost:8080/user/';
-  login_log_url = 'http://localhost:8080/login/addtimestamp';
-  get_login_log = 'http://localhost:8080/login/';
-  put_current_user = 'http://localhost:8080/user/current';
+  aws_url = 'http://adaptiveassgn-env.zmjstf8vmf.us-east-1.elasticbeanstalk.com:9000';
+  // aws_url = 'http://localhost:9000';
+  URL = this.aws_url + '/user/';
+  login_log_url = this.aws_url + '/login/addtimestamp';
+  get_login_log = this.aws_url + '/login/';
+  put_current_user = this.aws_url + '/user/current';
+  get_user_logs = this.aws_url + '/log/';
+  delete_current_user = this.aws_url + '/user/delete';
 
   constructor(private http: Http, private globals: Globals) {
   }
@@ -35,6 +38,15 @@ export class BackendService {
       )
   }
 
+  getUserLogs() {
+    return this.http.get(this.get_user_logs + this.globals.username)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      )
+  }
+
   getUsers(username: String, password:String) {
     return this.http.get(this.URL+ username +'/'+ password)
       .map(
@@ -42,6 +54,15 @@ export class BackendService {
           return response.json();
         }
       );
+  }
+
+  deleteUsers() {
+    return this.http.delete(this.delete_current_user)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      )
   }
 }
 

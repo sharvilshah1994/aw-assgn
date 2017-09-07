@@ -1,19 +1,82 @@
 <div class="container">
   <div class="row">
     <br>
-    <div>
-      <span *ngIf="isLoggedIn" style="color:brown;"><h1>Welcome <span id="userid">{{username}}</span></h1></span>
-      <div class="pull-right">
-        <button class="btn btn-danger" (click)="logout()">Logout</button>
-      </div>
-    </div>
     <br>
-    <br>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span *ngIf="isLoggedIn" style="color:brown;">Welcome <span id="userid">{{username}}</span></span></a>
+        </div>
 
-    <a href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15" target="_blank">Go to Stackoverflow</a>
-    <span><h4>Login Activity</h4></span>
-    <span *ngIf="flag">
-      <span *ngFor="let d of timestamps">Login made at: {{d}} <br></span>
-    </span>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a routerLink="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+              <a target="_blank" href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15">Stack Overflow </a>
+            </li>
+            <li><a routerLink="/question">Why did you decide to log these actions?</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a (click)="logout()" href="#">Logout</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <span><h4>Login Activity (Top 5 recent - Rest stored in Database)</h4></span>
+    <table class="table table-hover table-striped" *ngIf="flag">
+      <tr *ngFor="let d of timestamps">
+        <td>
+          Login made at: {{d}}
+        </td>
+      </tr>
+    </table>
+
+    <h4>User Stackoverflow Log</h4>
+    <button (click)="refresh()" class="btn btn-success">Refresh Logs Table</button>
+    <br>
+    <table class="table table-hover table-striped table-bordered" *ngIf="flag">
+      <th>
+        Event Type
+      </th>
+      <th>
+        Target
+      </th>
+      <th>
+        URL
+      </th>
+      <th>
+        Page content
+      </th>
+      <th>
+        Timestamp
+      </th>
+      <tr *ngFor="let k of logs">
+        <td>
+          {{k.event_type}}
+        </td>
+        <td>
+          {{k.target}}
+        </td>
+        <td>
+          {{k.uri}}
+        </td>
+        <td>
+          {{k.content}}
+        </td>
+        <td>
+          {{k.timestamp}}
+        </td>
+      </tr>
+    </table>
   </div>
 </div>

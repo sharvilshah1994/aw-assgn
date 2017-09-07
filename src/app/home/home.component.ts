@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginComponent} from "../login/login.component";
 import {Router} from "@angular/router";
 import {Globals} from "../globals";
 import {BackendService} from "../backend.service";
-import {timestamp} from "rxjs/operator/timestamp";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +13,8 @@ export class HomeComponent implements OnInit {
   isLoggedIn = false;
   timestamps = [];
   flag = false;
+  logs = [];
+
   constructor(private router: Router,  private global: Globals, private backend: BackendService) {
       console.log('Status:'+global.loginStatus);
       if(global.loginStatus) {
@@ -26,25 +26,57 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    let count = 0;
     console.log('On init');
     this.backend.getTimeStamp()
       .subscribe(
         (data: any) => {
           for (let i of data) {
             let d = new Date(parseInt(i.timestamp));
-            this.timestamps.push(d);
+            if (count < 6) {
+              this.timestamps.push(d);
+            }
+            count++;
           }
-          this.flag = true;
+          this.timestamps.reverse();
         }
-      )
+      );
+
+    this.backend.getUserLogs()
+      .subscribe(
+        (data: any) => {
+          for (let i of data) {
+            let d = new Date(parseInt(i.timestamp));
+            i['timestamp'] = d;
+            this.logs.push(i);
+          }
+          this.logs.reverse();
+        }
+      );
+    this.flag = true;
+
+  }
+
+  refresh () {
+    this.backend.getUserLogs()
+      .subscribe(
+        (data: any) => {
+          for (let i of data) {
+            let d = new Date(parseInt(i.timestamp));
+            i['timestamp'] = d;
+            console.log(i);
+            this.logs.push(i);
+          }
+        }
+      );
   }
 
   logout() {
-    const payload = {"username": "nothing"};
-    this.backend.putCurrentUser(payload).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+    this.backend.deleteUsers()
+      .subscribe(
+        (response: Response) =>
+        console.log(response)
+      );
     this.global.loginStatus = false;
     this.router.navigate(['login']);
   }
