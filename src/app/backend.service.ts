@@ -5,8 +5,8 @@ import {Globals} from "./globals";
 
 @Injectable()
 export class BackendService {
-  aws_url = 'http://adaptiveassgn-env.zmjstf8vmf.us-east-1.elasticbeanstalk.com:9000';
-  // aws_url = 'http://localhost:9000';
+  // aws_url = 'http://adaptiveassgn-env.zmjstf8vmf.us-east-1.elasticbeanstalk.com:9000';
+  aws_url = 'http://localhost:9000';
   URL = this.aws_url + '/user/';
   login_log_url = this.aws_url + '/login/addtimestamp';
   get_login_log = this.aws_url + '/login/';
