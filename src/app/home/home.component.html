@@ -18,29 +18,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+            <li>
+              <a routerLink="/profile">Home - User Profile <span class="sr-only">(current)</span></a>
+            </li>
             <li class="active">
-              <a routerLink="/">Home <span class="sr-only">(current)</span></a>
+              <a routerLink="/home">Logs </a>
             </li>
             <li>
               <a target="_blank" href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15">Stack Overflow </a>
             </li>
+
             <li><a routerLink="/question">Why did you decide to log these actions?</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a (click)="logout()" href="#">Logout</a></li>
+            <li><a routerLink="/logout">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <span><h4>Login Activity (Top 5 recent - Rest stored in Database)</h4></span>
-    <table class="table table-hover table-striped" *ngIf="flag">
-      <tr *ngFor="let d of timestamps">
-        <td>
-          Login made at: {{d}}
-        </td>
-      </tr>
-    </table>
-
     <h4>User Stackoverflow Log</h4>
     <button (click)="refresh()" class="btn btn-success">Refresh Logs Table</button>
     <br>

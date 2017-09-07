@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           );
           this.globals.username = this.username;
           this.globals.loginStatus = true;
-          this.route.navigate(['home']);
+          this.route.navigate(['profile']);
         }
         else {
           this.ifLoginSuccess = false;

@@ -12,6 +12,8 @@ import { HomeComponent } from './home/home.component';
 import {Globals} from "./globals";
 import {Ng2SmartTableModule} from "ng2-smart-table";
 import { QuestionComponent } from './question/question.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { QuestionComponent } from './question/question.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    QuestionComponent
+    QuestionComponent,
+    LogoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

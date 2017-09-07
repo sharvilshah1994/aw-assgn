@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="row">
+    <br>
+    <br>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"><span *ngIf="isLoggedIn" style="color:brown;">Welcome <span id="userid">{{username}}</span></span></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a routerLink="/profile">Home - User Profile <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+              <a routerLink="/home">Logs </a>
+            </li>
+            <li>
+              <a target="_blank" href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15">Stack Overflow </a>
+            </li>
+
+            <li><a routerLink="/question">Why did you decide to log these actions?</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a routerLink="/logout">Logout</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <h2>User Profile Page for {{username}}</h2>
+    <br>
+    <a target="_blank" href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15" class="btn btn-success">Stack Overflow</a>
+    <span><h4>Login Activity (Top 5 recent - Rest stored in Database)</h4></span>
+    <table class="table table-hover table-striped" *ngIf="flag">
+      <tr *ngFor="let d of timestamps">
+        <td>
+          Login made at: {{d}}
+        </td>
+      </tr>
+    </table>
+
+
+    <div class="container">
+      <div class="row">
+
+        <h1>Why did you decide to log these actions?</h1>
+        <br>
+        <table class="table table-bordered table-responsive">
+          <th>
+            Action
+          </th>
+          <th>
+            Reason
+          </th>
+          <tr>
+            <td>
+              Up-vote
+            </td>
+            <td>
+              This action is logged because we can know from this if a user found an answer correct. Stackoverflow is one of the best sites
+              to find the answers. If the user clicks up-vote then we should know what answer he found correct.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Down-vote
+            </td>
+            <td>
+              This action is logged because we can know from this if a user found an answer incorrect. We should know
+              what answer user found incorrect and that should be logged.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Scroll
+            </td>
+            <td>
+              I logged this action so that we can know if a user is interested in a particular question. Generally, user scrolls over
+              the page only when he finds the content interesting.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Post answer
+            </td>
+            <td>
+              A user makes keyboard events to post a particular answer. With the help of mouse and keyboard events we can know what
+              user posted for a particular question.
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              Bookmark
+            </td>
+            <td>
+              With the help of click event and target element name, we can know if a person bookmarked a question. This is important
+              because with the help of this, we can know if a user is interested in a specific question
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Question-links
+            </td>
+            <td>
+              With the help of mouse click event, we can know on what question did the user decide to go to. With the help of this,
+              we can know what topics user is interested in.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Mouse events
+            </td>
+            <td>
+              With the help of the mouse events, we can know what part of the page user was hovering over and with this we can
+              know the topics in which he is interested in.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Bonus: </strong>
+              Time
+            </td>
+            <td>
+              The website logs the time between each click and mouse event which helps in determining if the user found a
+              particular issue difficult. Difficulty level of a topic can be decided with the help of time spent.
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

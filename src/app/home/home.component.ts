@@ -111,14 +111,6 @@ export class HomeComponent implements OnInit {
       );
   }
 
-  logout() {
-    this.backend.deleteUsers()
-      .subscribe(
-        (response: Response) =>
-        console.log(response)
-      );
-    this.global.loginStatus = false;
-    this.router.navigate(['login']);
-  }
+
 
 }
