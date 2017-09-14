@@ -5,6 +5,7 @@ import {HomeComponent} from "./home/home.component";
 import {QuestionComponent} from "./question/question.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {VizComponent} from "./viz/viz.component";
 
 const appRoutes: Routes = [
   { path: '', component: ProfileComponent },
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   { path: 'question', component: QuestionComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'visualization', component: VizComponent },
   //404
   { path: '**', redirectTo: '' }
 ];

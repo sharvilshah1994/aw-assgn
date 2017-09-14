@@ -14,6 +14,9 @@ import {Ng2SmartTableModule} from "ng2-smart-table";
 import { QuestionComponent } from './question/question.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
+import { HeaderComponent } from './header/header.component';
+import { VizComponent } from './viz/viz.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,17 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     QuestionComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    HeaderComponent,
+    VizComponent
   ],
   imports: [
     BrowserModule,
     routing,
     HttpModule,
     FormsModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    NgxChartsModule
   ],
   providers: [BackendService, LoginComponent, Globals],
   bootstrap: [AppComponent]
