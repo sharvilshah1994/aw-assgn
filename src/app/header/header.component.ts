@@ -16,12 +16,29 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router,  private global: Globals, private backend: BackendService) {
     this.route = router.routerState.snapshot.url;
     console.log('Status:'+global.loginStatus);
-    if(global.loginStatus) {
-      this.username = global.username;
-      this.isLoggedIn = true;
-    } else {
-      router.navigate(['login']);
-    }
+    // backend.getCurrentUser().subscribe(
+    //   (data: any) => {
+    //     if (data.length == 1){
+    //       global.username = data[0].username;
+    //       global.loginStatus = true;
+    //       this.username = global.username;
+    //       this.isLoggedIn = true;
+    //     } else if (data.length > 1) {
+    //       router.navigate(['logout']);
+    //     } else {
+    //       router.navigate(['login']);
+    //     }
+    //   }
+    // );
+    backend.sessionManagement();
+    this.username = global.username;
+    this.isLoggedIn = global.loginStatus;
+    // if(global.loginStatus) {
+    //   this.username = global.username;
+    //   this.isLoggedIn = true;
+    // } else {
+    //   router.navigate(['login']);
+    // }
   }
 
   ngOnInit() {

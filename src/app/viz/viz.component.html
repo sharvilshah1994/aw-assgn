@@ -1,24 +1,78 @@
+
 <div class="container">
   <div class="row">
     <br>
     <br>
-
     <app-header></app-header>
 
-    <ngx-charts-bar-horizontal
-      [view]="view"
-      [scheme]="colorScheme"
-      [results]="single"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [legend]="showLegend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      (select)="onSelect($event)"
-    >
-    </ngx-charts-bar-horizontal>
+    <div style="width: 100%">
+      <app-verticalnav></app-verticalnav>
+
+
+      <div style="width: 80%; float:right;">
+        <h4>{{heading}}</h4>
+
+        <br>
+        <form #f="ngForm">
+        <input class="form-check-input" type="radio" name="radiogroup" id="all" [value]="1"  ngModel
+               (change)="triggerGraphChange()" [checked]="horizontal_flag">&nbsp;All Time&nbsp;
+          <br>
+        <input class="form-check-input" type="radio" name="radiogroup" id="date" [value]="2" ngModel
+               (change)="triggerGraphChange()">&nbsp;Date Wise
+        </form>
+        <br>
+        <!--<ngx-charts-bar-horizontal-->
+          <!--[view]="view"-->
+          <!--[scheme]="colorScheme"-->
+          <!--[results]="data"-->
+          <!--[gradient]="gradient"-->
+          <!--[xAxis]="showXAxis"-->
+          <!--[yAxis]="showYAxis"-->
+          <!--[legend]="showLegend"-->
+          <!--[showXAxisLabel]="showXAxisLabel"-->
+          <!--[showYAxisLabel]="showYAxisLabel"-->
+          <!--[xAxisLabel]="xAxisLabel"-->
+          <!--[yAxisLabel]="yAxisLabel"-->
+          <!--(select)="onSelect($event)"-->
+          <!--*ngIf="horizontal_flag">-->
+        <!--</ngx-charts-bar-horizontal>-->
+
+        <ngx-charts-gauge
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="data"
+          [min]="0"
+          [max]="100"
+          [angleSpan]="240"
+          [startAngle]="-120"
+          [units]="'Events'"
+          [bigSegments]="10"
+          [smallSegments]="5"
+          (select)="onSelect($event)"
+          [legend]="showLegend"
+        *ngIf="horizontal_flag">
+        </ngx-charts-gauge>
+
+
+        <ngx-charts-bar-vertical-2d
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="data"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xLabel"
+          [yAxisLabel]="yLabel"
+          (select)="onSelect($event)"
+        *ngIf="vertical_flag">
+        </ngx-charts-bar-vertical-2d>
+      </div>
+
+
+    </div>
+
   </div>
 </div>

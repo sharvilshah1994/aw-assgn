@@ -24,7 +24,7 @@
             <a routerLink="/home">Logs </a>
           </li>
 
-        <li [ngClass]="{'active': this.route === '/visualization'}">
+        <li [ngClass]="{'active': this.route.indexOf('/visualization') != -1 }">
           <!--<span *ngIf="this.route === '/home'" class="active"></span>-->
           <a routerLink="/visualization">Visualizations </a>
         </li>

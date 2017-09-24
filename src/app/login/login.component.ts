@@ -13,14 +13,14 @@ import {Globals} from "../globals";
 @Injectable()
 export class LoginComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
-  res: any;
   private username: String;
   private password: String;
   ifLoginSuccess = true;
-  private chrome;
 
   constructor(private backendService: BackendService, private route: Router,
-  private globals: Globals) { }
+  private globals: Globals) {
+    console.log('Login called');
+  }
 
   ngOnInit() {
   }

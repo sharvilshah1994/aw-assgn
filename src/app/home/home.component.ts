@@ -17,12 +17,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router,  private global: Globals, private backend: BackendService) {
       console.log('Status:'+global.loginStatus);
-      if(global.loginStatus) {
-        this.username = global.username;
-        this.isLoggedIn = true;
-      } else {
-        router.navigate(['login']);
-      }
+      // if(global.loginStatus) {
+      //   this.username = global.username;
+      //   this.isLoggedIn = true;
+      // } else {
+      //   router.navigate(['login']);
+      // }
   }
 
   ngOnInit() {

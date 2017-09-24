@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <br>
+    <br>
+    <app-header></app-header>
+
+    <div style="width: 100%">
+      <app-verticalnav></app-verticalnav>
+
+
+      <div style="width: 80%; float:right;">
+        <h2>Comparison between Users </h2>
+        <span style="float:left;">
+        <h6>**Turn on this switch to show Vote Map</h6>
+        <label class="switch">
+        <input type="checkbox" (change)="triggerGraphChange()">
+        <span class="slider round"></span>
+        </label></span>
+        <p></p>
+        <br><br><br><br>
+
+
+        <h4>{{heading}}</h4>
+
+        <br>
+        <ngx-charts-heat-map
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="multi"
+          [legend]="showLegend"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          (select)="onSelect($event)"
+        *ngIf="graph_flag">
+        </ngx-charts-heat-map>
+
+        <ngx-charts-tree-map
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          *ngIf="treeMap">
+        </ngx-charts-tree-map>
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

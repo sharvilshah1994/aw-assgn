@@ -17,6 +17,10 @@ import { ProfileComponent } from './profile/profile.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { HeaderComponent } from './header/header.component';
 import { VizComponent } from './viz/viz.component';
+import { VerticalnavComponent } from './verticalnav/verticalnav.component';
+import { CompareComponent } from './viz/compare/compare.component';
+import { TopicsComponent } from './viz/topics/topics.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -28,7 +32,10 @@ import { VizComponent } from './viz/viz.component';
     LogoutComponent,
     ProfileComponent,
     HeaderComponent,
-    VizComponent
+    VizComponent,
+    VerticalnavComponent,
+    CompareComponent,
+    TopicsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,8 @@ import { VizComponent } from './viz/viz.component';
     HttpModule,
     FormsModule,
     Ng2SmartTableModule,
-    NgxChartsModule
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [BackendService, LoginComponent, Globals],
   bootstrap: [AppComponent]

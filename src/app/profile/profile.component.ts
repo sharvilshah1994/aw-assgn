@@ -17,12 +17,15 @@ export class ProfileComponent implements OnInit {
 
   constructor(private router: Router,  private global: Globals, private backend: BackendService) {
     console.log('Status:'+global.loginStatus);
-    if(global.loginStatus) {
-      this.username = global.username;
-      this.isLoggedIn = true;
-    } else {
-      router.navigate(['login']);
-    }
+    backend.sessionManagement();
+    this.username = global.username;
+    this.isLoggedIn = global.loginStatus;
+    // if(global.loginStatus) {
+    //   this.username = global.username;
+    //   this.isLoggedIn = true;
+    // } else {
+    //   router.navigate(['login']);
+    // }
   }
 
   ngOnInit() {
