@@ -97,9 +97,11 @@ export class VizComponent implements OnInit {
                 }
               }
               if (!check_flag) {
+                if (i.event_type.indexOf('scroll') === -1){
                 obj['name'] = i.event_type;
                 obj['value'] = 1;
                 series.push(obj);
+                }
               }
             }
           }
@@ -124,9 +126,11 @@ export class VizComponent implements OnInit {
         }
         for (let j in obj) {
           let obj_ins = {};
-          obj_ins['name'] = j;
-          obj_ins['value'] = obj[j];
-          this.data.push(obj_ins);
+          if (j.indexOf('scroll') === -1) {
+            obj_ins['name'] = j;
+            obj_ins['value'] = obj[j];
+            this.data.push(obj_ins);
+          }
         }
         this.horizontal_flag = true;
       }
