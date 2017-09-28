@@ -9,7 +9,8 @@
       <div style="width: 80%; float:right;">
         <h2>Comparison between Users </h2>
         <span style="float:left;">
-        <h6>**TURN ON/OFF THE BELOW SWITCH TO SWITCH GRAPHS</h6>
+
+          <h6><span *ngIf="treeMap">BONUS</span><i>**TURN ON/OFF THE BELOW SWITCH TO SWITCH GRAPHS</i></h6>
         <label class="switch">
         <input type="checkbox" (change)="triggerGraphChange()">
         <span class="slider round"></span>
@@ -37,6 +38,8 @@
         *ngIf="graph_flag">
         </ngx-charts-heat-map>
 
+
+
         <ngx-charts-tree-map
           [view]="view"
           [scheme]="colorScheme"
@@ -44,6 +47,64 @@
           *ngIf="treeMap">
         </ngx-charts-tree-map>
 
+        <br>
+        <br>
+        <span *ngIf="treeMap">
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br>
+        <br>
+        </span>
+        <span *ngIf="graph_flag">
+          <h3>HEAT MAP: Social Network Visualization</h3>
+          <h4>Actions covered: Mouse events, keyboard events, scroll, post answer</h4>
+          <h5>From the heat map we can know following things</h5>
+          <ul>
+            <li>Most active user on Stackoverflow</li>
+            <li>Event counter</li>
+            <li>Which user uses what activity the most</li>
+            <li>Most famous activity among the users</li>
+          </ul>
+          <h5>Interactions</h5>
+          <ul>
+            <li>Hover to see the exact data</li>
+            <li>Click on the slider button to display Vote-Up/Down Tree Map</li>
+          </ul>
+          <h5>Steps to find results</h5>
+          <ul>
+            <li>Look at graph, check which block has good shade of color and you can know user involved in interactions</li>
+            <li>You can check X-axis and Y-axis to know which user has done what interaction</li>
+            <li>Hover anywhere to know exact data</li>
+          </ul>
+          <h5>Why does it matter?</h5>
+          <ul>
+            <li>To know which user on the system has maximum/minimum interactions</li>
+            <li>Which event is used most by the users</li>
+          </ul>
+        </span>
+        <span *ngIf="treeMap">
+          <h3>BONUS - TREE MAP: Social Network Visualization</h3>
+          <h4>Actions covered: Up-Vote, Down-vote</h4>
+          <h5>From the tree map we can know following things</h5>
+          <ul>
+            <li>Which user does maximum vote-up / vote-down on Stack overflow</li>
+            <li>Which user contributes the most</li>
+          </ul>
+          <h5>Interactions</h5>
+          <ul>
+            <li>Hover to see the exact data</li>
+            <li>Click on the slider button to display Heat Map</li>
+          </ul>
+          <h5>Steps to find results</h5>
+          <ul>
+            <li>Look at graph, check which user has biggest block to know which user has maximum up-votes and down-votes</li>
+            <li>Hover anywhere to know exact data</li>
+          </ul>
+          <h5>Why does it matter?</h5>
+          <ul>
+            <li>To know which user on the system has maximum/minimum interactions</li>
+            <li>To know exact of number of vote-up and vote-down done by the user till now</li>
+          </ul>
+        </span>
       </div>
 
 

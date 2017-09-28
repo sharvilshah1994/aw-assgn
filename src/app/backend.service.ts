@@ -6,8 +6,8 @@ import {Router} from "@angular/router";
 
 @Injectable()
 export class BackendService {
-  // aws_url = 'http://adaptiveassgn-env.zmjstf8vmf.us-east-1.elasticbeanstalk.com:9000';
-  aws_url = 'http://localhost:9000';
+  aws_url = 'http://adaptiveassgn-env.zmjstf8vmf.us-east-1.elasticbeanstalk.com:9000';
+  // aws_url = 'http://localhost:9000';
   URL = this.aws_url + '/user/';
   login_log_url = this.aws_url + '/login/addtimestamp';
   get_login_log = this.aws_url + '/login/';
@@ -106,20 +106,20 @@ export class BackendService {
   }
 
   sessionManagement() {
-    this.getCurrentUser().subscribe(
-      (data: any) => {
-        if (data.length == 1){
-          this.globals.username = data[0].username;
-          this.globals.loginStatus = true;
-          // this.username = global.username;
-          // this.isLoggedIn = true;
-        } else if (data.length > 1) {
-          this.router.navigate(['logout']);
-        } else {
-          this.router.navigate(['login']);
-        }
-      }
-    );
+    // this.getCurrentUser().subscribe(
+    //   (data: any) => {
+    //     if (data.length == 1){
+    //       this.globals.username = data[0].username;
+    //       this.globals.loginStatus = true;
+    //       // this.username = global.username;
+    //       // this.isLoggedIn = true;
+    //     } else if (data.length > 1) {
+    //       this.router.navigate(['logout']);
+    //     } else {
+    //       this.router.navigate(['login']);
+    //     }
+    //   }
+    // );
   }
 }
 

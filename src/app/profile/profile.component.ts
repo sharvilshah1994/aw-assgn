@@ -10,35 +10,37 @@ import {timestamp} from "rxjs/operator/timestamp";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  username;
+  username = localStorage.getItem("userid");
   timestamps = [];
-  flag;
+  flag = false;
   isLoggedIn;
 
   constructor(private router: Router,  private global: Globals, private backend: BackendService) {
     console.log('Status:'+global.loginStatus);
-    backend.sessionManagement();
-    this.username = global.username;
+    // backend.sessionManagement();
+
+    this.username = localStorage.getItem("userid");
     this.isLoggedIn = global.loginStatus;
-    // if(global.loginStatus) {
-    //   this.username = global.username;
-    //   this.isLoggedIn = true;
-    // } else {
-    //   router.navigate(['login']);
-    // }
+    if(this.username != null) {
+      this.isLoggedIn = true;
+      this.getTableData();
+    } else {
+      router.navigate(['login']);
+    }
   }
 
   ngOnInit() {
-    let count = 0;
+
+  }
+
+  getTableData() {
+    console.log("Table called");
     this.backend.getTimeStamp()
       .subscribe(
         (data: any) => {
           for (let i of data) {
             let d = new Date(parseInt(i.timestamp));
-            if (count < 6) {
-              this.timestamps.push(d);
-            }
-            count++;
+            this.timestamps.push(d);
           }
           console.log(this.timestamps);
           this.timestamps.reverse();

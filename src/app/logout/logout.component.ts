@@ -13,6 +13,7 @@ export class LogoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.clear();
     this.backend.deleteUsers()
       .subscribe(
         (response: Response) =>

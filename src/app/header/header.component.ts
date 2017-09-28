@@ -29,16 +29,16 @@ export class HeaderComponent implements OnInit {
     //       router.navigate(['login']);
     //     }
     //   }
-    // );
-    backend.sessionManagement();
-    this.username = global.username;
+    // )
+    // ;
+    this.username = localStorage.getItem("userid");
+    // this.username = global.username;
     this.isLoggedIn = global.loginStatus;
-    // if(global.loginStatus) {
-    //   this.username = global.username;
-    //   this.isLoggedIn = true;
-    // } else {
-    //   router.navigate(['login']);
-    // }
+    if(this.username != null) {
+      this.isLoggedIn = true;
+    } else {
+      router.navigate(['login']);
+    }
   }
 
   ngOnInit() {

@@ -21,7 +21,7 @@ export class CompareComponent implements OnInit {
   yAxisLabel = 'Users';
   treeMap: boolean = false;
   single: any[];
-  heading = 'Heat Map';
+  heading = 'Heat Map: Social Network Visualization';
 
   colorScheme = {
     domain: ['#fef0d9', '#fdcc8a', '#fc8d59', '#e34a33', '#b30000']
@@ -42,7 +42,7 @@ export class CompareComponent implements OnInit {
   triggerGraphChange() {
     if (!this.treeMap) {
       this.graph_flag = false;
-      this.heading = 'Tree Map';
+      this.heading = 'Tree Map: Social Network Visualization';
       this.backend.getAllLogs().subscribe(
         (dat: any) => {
           let ans = [];

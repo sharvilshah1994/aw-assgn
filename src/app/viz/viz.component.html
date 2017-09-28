@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
     <app-header></app-header>
@@ -8,7 +7,9 @@
 
 
       <div style="width: 80%; float:right;">
-        <h4>{{heading}}</h4>
+        <h4 *ngIf="horizontal_flag">PIE CHART: Graph for the Logged in user</h4>
+        <h4 *ngIf="vertical_flag">BAR CHART: Graph for Logged in user</h4>
+        <h4 *ngIf="spider_flag">SPIDER CHART: Social Network Visualization</h4>
 
         <br>
         <form #f="ngForm">
@@ -16,8 +17,13 @@
                (change)="triggerGraphChange()" [checked]="horizontal_flag">&nbsp;All Time&nbsp;
           <br>
         <input class="form-check-input" type="radio" name="radiogroup" id="date" [value]="2" ngModel
-               (change)="triggerGraphChange()">&nbsp;Date Wise
+               (change)="triggerGraphChange()" [checked]="!horizontal_flag">&nbsp;Date Wise
         </form>
+        <h6><i>**TURN ON/OFF THE BELOW SWITCH TO SHOW/HIDE SOCIAL NETWORK GRAPH</i></h6>
+        <label class="switch">
+          <input type="checkbox" (change)="triggerSpider()">
+          <span class="slider round"></span>
+        </label>
         <br>
         <!--<ngx-charts-bar-horizontal-->
           <!--[view]="view"-->
@@ -35,26 +41,35 @@
           <!--*ngIf="horizontal_flag">-->
         <!--</ngx-charts-bar-horizontal>-->
 
-        <ngx-charts-gauge
-          [view]="view"
-          [scheme]="colorScheme"
-          [results]="data"
-          [min]="0"
-          [max]="100"
-          [angleSpan]="240"
-          [startAngle]="-120"
-          [units]="'Events'"
-          [bigSegments]="10"
-          [smallSegments]="5"
-          (select)="onSelect($event)"
-          [legend]="showLegend"
-        *ngIf="horizontal_flag">
-        </ngx-charts-gauge>
+        <!--<ngx-charts-gauge-->
+          <!--[view]="view"-->
+          <!--[scheme]="colorScheme"-->
+          <!--[results]="data"-->
+          <!--[min]="0"-->
+          <!--[max]="100"-->
+          <!--[angleSpan]="240"-->
+          <!--[startAngle]="-120"-->
+          <!--[units]="'Events'"-->
+          <!--[bigSegments]="10"-->
+          <!--[smallSegments]="5"-->
+          <!--(select)="onSelect($event)"-->
+          <!--[legend]="showLegend"-->
+        <!--*ngIf="horizontal_flag">-->
+        <!--</ngx-charts-gauge>-->
 
+        <ngx-charts-advanced-pie-chart
+          [view]="view"
+          [scheme]="colorScheme_pie"
+          [results]="data"
+          [gradient]="gradient"
+          (select)="onSelect($event)"
+          *ngIf="horizontal_flag">
+        </ngx-charts-advanced-pie-chart>
+        <p *ngIf="horizontal_flag"><i>Click anywhere on the graph to show date-wise distribution</i></p>
 
         <ngx-charts-bar-vertical-2d
           [view]="view"
-          [scheme]="colorScheme"
+          [scheme]="colorScheme_pie"
           [results]="data"
           [gradient]="gradient"
           [xAxis]="showXAxis"
@@ -67,8 +82,102 @@
           (select)="onSelect($event)"
         *ngIf="vertical_flag">
         </ngx-charts-bar-vertical-2d>
-      </div>
+          <canvas baseChart
+                  [datasets]="radarChartData"
+                  [labels]="radarChartLabels"
+                  [chartType]="radarChartType"
+                  *ngIf="spider_flag"></canvas>
 
+        <br> <br>
+        <span *ngIf="vertical_flag">
+        <br> <br>        <br> <br> <br> <br><br> <br> <br>
+        </span>
+        <span *ngIf="horizontal_flag">
+          <h3>PIE CHART: Graph for the Logged in user</h3>
+          <h4>Actions covered: Mouse events, keyboard events, scroll, post answer</h4>
+          <h5>From the pie chart we can know following things</h5>
+          <ul>
+            <li>Number of events</li>
+            <li>What activity has user done most till now</li>
+            <li>Total number of user events done till now</li>
+          </ul>
+          <h5>Interactions</h5>
+          <ul>
+            <li>Hover to see the exact data</li>
+            <li>Click on the graph to see all-time interactions</li>
+            <li>Click on the radio button to change graphs</li>
+            <li>Click on the slider button to display social network visualization</li>
+          </ul>
+          <h5>Steps to find results</h5>
+          <ul>
+            <li>Hover over the pie chart to get exact counter</li>
+            <li>Look for the event that covers maximum portion and look at legend to know which event is that</li>
+            <li>You can also look at percentage to know answers</li>
+          </ul>
+          <h5>Why does it matter?</h5>
+          <ul>
+            <li>We can know which event is most important for the user and optimize the application in that way</li>
+            <li>We can also know from here if there is any anomaly</li>
+          </ul>
+        </span>
+        <span *ngIf="vertical_flag">
+          <h3>BAR CHART: Graph for Logged in user</h3>
+          <h4>Actions covered: Mouse events, keyboard events, scroll, post answer</h4>
+          <h5>From the bar chart we can know the following things</h5>
+          <ul>
+            <li>Date of the particular event</li>
+            <li>On what date was the user interaction highest</li>
+            <li>Which event has the highest counter</li>
+
+          </ul>
+          <h5>Interactions</h5>
+          <ul>
+            <li>Hover to see the exact data</li>
+            <li>Click on the graph to see date-wise interaction</li>
+            <li>Click on the radio button to change graphs</li>
+            <li>Click on the slider button to display social network visualization</li>
+          </ul>
+          <h5>Steps to find results</h5>
+          <ul>
+            <li>By looking at graph, you can see which bar is bigger</li>
+            <li>You can get date from X-axis and count from Y-axis</li>
+            <li>You can also hover graph and get results</li>
+          </ul>
+          <h5>Why does it matter?</h5>
+          <ul>
+            <li>It matters because it is important to know the date when user was active</li>
+            <li>Also, which event user uses the most to track activities. We can immediately detect anomaly</li>
+          </ul>
+        </span>
+        <span *ngIf="spider_flag">
+          <h3>SPIDER CHART: Social Network Visualization</h3>
+          <h4>Actions covered: Mouse events, keyboard events, scroll, post answer</h4>
+          <h5>From the bar chart we can know the following things</h5>
+          <ul>
+            <li>Comparison of events between different users</li>
+            <li>Which event has highest priority among all users</li>
+            <li>Which event has the highest counter</li>
+            <li>Most active user on Stackoverflow</li>
+          </ul>
+          <h5>Interactions</h5>
+          <ul>
+              <li>Hover to see the exact data</li>
+              <li>Click on the legend to eliminate any user</li>
+              <li>Click on radio button to show current user's all-time or date-wise logs</li>
+          </ul>
+          <h5>Steps to find results</h5>
+          <ul>
+            <li>Look at graph, check which portion covers maximum area and you can know the user who has maximum interactions</li>
+            <li>Click anywhere on the legend and you can eliminate any user interaction on the graph to know exact answer</li>
+            <li>Hover anywhere to know exact data</li>
+          </ul>
+          <h5>Why does it matter?</h5>
+          <ul>
+            <li>To know which user on the system has maximum/minimum interactions</li>
+            <li>Which event is used most by the users</li>
+          </ul>
+        </span>
+      </div>
 
     </div>
 

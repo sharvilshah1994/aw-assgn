@@ -21,6 +21,7 @@ import { VerticalnavComponent } from './verticalnav/verticalnav.component';
 import { CompareComponent } from './viz/compare/compare.component';
 import { TopicsComponent } from './viz/topics/topics.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     FormsModule,
     Ng2SmartTableModule,
     NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   providers: [BackendService, LoginComponent, Globals],
   bootstrap: [AppComponent]

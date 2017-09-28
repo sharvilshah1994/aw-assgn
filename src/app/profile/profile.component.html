@@ -4,15 +4,18 @@
     <app-header></app-header>
     <h2>User Profile Page for {{username}}</h2>
     <br>
-    <a target="_blank" href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15" class="btn btn-success">Stack Overflow</a>
-    <span><h4>Login Activity (Top 5 recent - Rest stored in Database)</h4></span>
-    <table class="table table-hover table-striped" *ngIf="flag">
+    <a target="_blank" href="https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15" class="btn btn-success">Go to Stack Overflow</a>
+    <span><h4>Login Activity</h4></span>
+    <span *ngIf="flag">
+        <table class="table table-hover table-striped table-fixed">
       <tr *ngFor="let d of timestamps">
         <td>
           Login made at: {{d}}
         </td>
       </tr>
     </table>
+    </span>
+
 
 
     <div class="container">

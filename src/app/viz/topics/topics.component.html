@@ -8,8 +8,53 @@
 
 
       <div style="width: 80%; float:right;">
-        <h4>Topics Graph</h4>
+        <h4>Posted answer graph: Social Network Visualization</h4>
+        <h5>BONUS</h5>
+        <ngx-charts-line-chart
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="multi"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          [autoScale]="autoScale"
+          (select)="onSelect($event)"
+          *ngIf="graph_flag">
+        </ngx-charts-line-chart>
+        <br>
+        <br>
+        <span *ngIf="graph_flag">
+                  <br><br><br><br><br><br><br><br><br><br><br><br>
 
+          <h3>BONUS - LINE GRAPH: Social Network Visualization</h3>
+          <h4>Actions covered: Post answer</h4>
+          <h5>From the Line graph we can know following things</h5>
+          <ul>
+            <li>Which user has given maximum answers on Stack overflow</li>
+            <li>Which user contributes the most</li>
+            <li>On which date was the user active the most</li>
+          </ul>
+          <h5>Interactions</h5>
+          <ul>
+            <li>Hover to see the exact data</li>
+            <li>Click on the legend to highlight the graph</li>
+          </ul>
+          <h5>Steps to find results</h5>
+          <ul>
+            <li>Look at graph, X-axis denotes date and Y-axis denotes count, You can know exact number of answers posted by the users on the date</li>
+            <li>Hover anywhere to know exact data</li>
+          </ul>
+          <h5>Why does it matter?</h5>
+          <ul>
+            <li>To know which user has posted maximum number of answers on stackoverflow</li>
+            <li>To know exact number of posted answers by the user till now</li>
+          </ul>
+        </span>
       </div>
 
 

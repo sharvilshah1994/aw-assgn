@@ -13,7 +13,7 @@ import {Globals} from "../globals";
 @Injectable()
 export class LoginComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
-  private username: String;
+  private username: string;
   private password: String;
   ifLoginSuccess = true;
 
@@ -44,9 +44,14 @@ export class LoginComponent implements OnInit {
             (response) => console.log(response),
             (error) => console.log(error)
           );
-          this.globals.username = this.username;
+          localStorage.setItem("userid", this.username);
+          this.globals.username = localStorage.getItem("userid");
           this.globals.loginStatus = true;
+          while (this.globals.username != this.username) {
+
+          }
           this.route.navigate(['profile']);
+
         }
         else {
           this.ifLoginSuccess = false;
